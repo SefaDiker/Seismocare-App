@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
-import './style.css';
+import './page3.css';
 
 export class Page3 extends Component {
   continue = e => {
@@ -40,6 +40,9 @@ export class Page3 extends Component {
           <MenuItem value={5}>5</MenuItem>
           <MenuItem value={6}>6</MenuItem>
           <MenuItem value={7}>7</MenuItem>
+          <MenuItem value={8}>8</MenuItem>
+          <MenuItem value={9}>9</MenuItem>
+          <MenuItem value={10}>10</MenuItem>
           
         </Select>
            

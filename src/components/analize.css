@@ -1,24 +1,24 @@
-.lastPage{
-    width: 35%;
+.analize{
+    width: 60%;
     height: 41%;
     padding: 10px;  
     
     position: absolute;
     left: 55%;
-    top: 30%;
+    top: 25%;
     transform: translate(-50%, -50%);
  
 }
 
-.lastPage button{
+.analize button{
     margin-top: 5px;
     margin-right: 10px;
-    padding: 5px 5px;
+    padding: 12px 24px;
  
 }
 .skor{
     margin-top: 1vmax;
-    font-size: 30px;
-    background-color: wheat;
+    font-size: 20px;
+    background-color: #ff9881;
 
 }

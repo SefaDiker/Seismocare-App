@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
-import './style.css';
+import './page2.css';
 
 export class Page2 extends Component {
   continue = e => {
@@ -19,7 +19,7 @@ export class Page2 extends Component {
     const { values, handleChange } = this.props;
     return (
       
-        <div className="Page1">
+        <div className="Page2">
           <InputLabel style={{ fontSize:'25px'  }}>Binanızın Yapım Yılı</InputLabel>
             <TextField
               placeholder="Binanızın yapım yılını giriniz"

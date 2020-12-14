@@ -1,5 +1,5 @@
-.Page3{
-    width: 90%;
+.Page5{
+    width: 50%;
     
     padding: 10px;  
     
@@ -10,7 +10,9 @@
  
 }
 
-.Page3 button{
+.Page5 button{
 
-    padding-top: 12px;
+    padding-top: 8px;
+    margin-top:4px ;
+    margin-right: 8px;
 }

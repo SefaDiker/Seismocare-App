@@ -3,11 +3,11 @@ import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import './style.css';
+import './page5.css';
 import ayrik from './images/ayrik.png'
 import bitisik from './images/bitisik.png'
 
-export class Page4 extends Component {
+export class Page5 extends Component {
   continue = e => {
     e.preventDefault();
     this.props.nextStep();
@@ -23,14 +23,14 @@ export class Page4 extends Component {
     return (
       
       
-      <div className="Page3">
-         <img src={ayrik} width="500" style={{margin:"0px 10px 5px 0px"}} />
-         <img src={bitisik} width="500"  style={{margin:"0px 10px 5px 0px"}}/> 
+      <div className="Page5">
+         <img src={ayrik} width="300" style={{margin:"0px 10px 5px 0px"}} />
+         <img src={bitisik} width="300"  style={{margin:"0px 10px 5px 0px"}}/> 
          
       
-        <InputLabel style={{marginBottom: '32px', fontSize:'25px'  }}>Binanızın yapılaşma tipi nedir? </InputLabel>
+        <InputLabel style={{ fontSize:'20px'  }}>Binanızın yapılaşma tipi nedir? </InputLabel>
         
-        <Select style={{marginBottom:'9px' }}
+        <Select style={{marginBottom:'8px' }}
           onChange={handleChange('buildingLayout')}
           defaultValue={values.buildingLayout}
           fullWidth
@@ -62,4 +62,4 @@ export class Page4 extends Component {
   }
 }
 
-export default Page4;
+export default Page5;

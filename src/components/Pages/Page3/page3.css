@@ -1,22 +1,18 @@
-.Page1{
+.Page3{
     width: 50%;
     
     padding: 10px;  
-   
+    
     position: absolute;
     left: 50%;
-    top: 40%;
+    top: 50%;
     transform: translate(-50%, -50%);
  
 }
 
-.Page1 button{
+.Page3 button{
 
     padding-top: 8px;
-    margin-top: 16px;
-    margin-left: 80px;
+    margin-top:4px ;
+    margin-right: 8px;
 }
-
-
-
-
