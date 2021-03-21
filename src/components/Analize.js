@@ -8,26 +8,26 @@ import BarChart from './Charts'
 export class Analize extends Component {
 
   state = {
-    step:1,
+    step: 1,
     codesYear: 0,
-    seismicZone:0,
-    cZero:0,
-    period:0,
-    tZero:0,
-    I:1,
-    K:0.8,
-    S:0,
-    C:0,
-    longitude:0,
-    latitude:0,
-    FsCoff:0,
-    F1Coff:0,
-    sAe:0,
-    sAr:0,
-    aa:0,
-    bb:0
+    seismicZone: 0,
+    cZero: 0,
+    period: 0,
+    tZero: 0,
+    I: 1,
+    K: 0.8,
+    S: 0,
+    C: 0,
+    longitude: 0,
+    latitude: 0,
+    FsCoff: 0,
+    F1Coff: 0,
+    sAe: 0,
+    sAr: 0,
+    aa: 0,
+    bb: 0
 
-    
+
   };
 
   continue = e => {
@@ -40,133 +40,133 @@ export class Analize extends Component {
     this.props.prevStep();
   };
 
-  
+
 
   codes = () => {
-    const { values: {constructionYear}} = this.props;
+    const { values: { constructionYear } } = this.props;
 
-    if (constructionYear >= 2019){
+    if (constructionYear >= 2019) {
       this.setState({
-        codesYear : '2018 Deprem Yönetmeliği'
+        codesYear: '2018 Deprem Yönetmeliği'
       });
       this.analize2018();
-    } else if (constructionYear < 2019 && constructionYear >= 2007){
+    } else if (constructionYear < 2019 && constructionYear >= 2007) {
       this.setState({
-        codesYear : '2007 Deprem Yönetmeliği'
+        codesYear: '2007 Deprem Yönetmeliği'
       });
-    }else if (constructionYear < 2007 && constructionYear >= 1998){
+    } else if (constructionYear < 2007 && constructionYear >= 1998) {
       this.setState({
-        codesYear : '1998 Deprem Yönetmeliği'
+        codesYear: '1998 Deprem Yönetmeliği'
       });
       return this.state;
-    }else if (constructionYear < 1998 && constructionYear >= 1975 || constructionYear == null){
+    } else if (constructionYear < 1998 && constructionYear >= 1975 || constructionYear == null) {
       this.analize1975();
       this.analize2018();
       this.setState({
-        codesYear : '1975 Deprem Yönetmeliği'
-      }); 
+        codesYear: '1975 Deprem yönetmeliği'
+      });
     }
-    
+
 
   };
 
   seismicZone = () => {
-    const { values: {location}} = this.props;
-    if (location == 'yalova'){
+    const { values: { location } } = this.props;
+    if (location == 'yalova') {
       this.setState({
-        seismicZone:1,
-        cZero:0.1
+        seismicZone: 1,
+        cZero: 0.1
       })
-    }if (location == 'istanbul'){
+    } if (location == 'istanbul') {
       this.setState({
-        seismicZone:2,
-        cZero:0.08
+        seismicZone: 2,
+        cZero: 0.08
       })
-    }if (location == 'ankara'){
+    } if (location == 'ankara') {
       this.setState({
-        seismicZone:3,
-        cZero:0.06
-      }) 
-    }if (location == 'konya'){
+        seismicZone: 3,
+        cZero: 0.06
+      })
+    } if (location == 'konya') {
       this.setState({
-        seismicZone:4,
-        cZero:0.03
+        seismicZone: 4,
+        cZero: 0.03
       })
     }
   }
 
   analize1975 = () => {
-    const { values: {location,numberOfStory}} = this.props;
-    const {step, period,tZero,K,I}=this.state;
+    const { values: { location, numberOfStory } } = this.props;
+    const { step, period, tZero, K, I } = this.state;
     switch (step) {
-      
+
       case 1:
-          var t0;
-          const { values: {soilClass}} = this.props;
-          if (soilClass == 0){
-            t0=0.6
-          }else if (soilClass == 1){
-            t0=0.25
-          }else if (soilClass == 2){
-            t0=0.42
-          }else if (soilClass == 3){
-            t0=0.6
-          }else if (soilClass == 4){
-            t0=0.9
-          }
+        var t0;
+        const { values: { soilClass } } = this.props;
+        if (soilClass == 0) {
+          t0 = 0.6
+        } else if (soilClass == 1) {
+          t0 = 0.25
+        } else if (soilClass == 2) {
+          t0 = 0.42
+        } else if (soilClass == 3) {
+          t0 = 0.6
+        } else if (soilClass == 4) {
+          t0 = 0.9
+        }
         this.setState({
           step: 4,
-          tZero:t0
+          tZero: t0
         })
       case 2:
         var c0;
-        if (location == 'yalova'){
-          c0=0.1;
+        if (location == 'yalova') {
+          c0 = 0.1;
           this.setState({
-            seismicZone:1
+            seismicZone: 1
           })
-        }if (location == 'istanbul'){
-          c0=0.08
+        } if (location == 'istanbul') {
+          c0 = 0.08
           this.setState({
-            seismicZone:2  
+            seismicZone: 2
           })
-        }if (location == 'ankara'){
-          c0=0.06
+        } if (location == 'ankara') {
+          c0 = 0.06
           this.setState({
-            seismicZone:3  
-          }) 
-        }if (location == 'konya'){
-          c0=0.03
+            seismicZone: 3
+          })
+        } if (location == 'konya') {
+          c0 = 0.03
           this.setState({
-            seismicZone:4 
+            seismicZone: 4
           })
         }
         this.setState({
-          cZero:c0,
+          cZero: c0,
           step: 5
         })
       case 3:
-        let P = numberOfStory*0.1;
-        var x= (1/(0.8+P-t0));
-        if (x > 1){
-          var S=1;
+        let P = numberOfStory * 0.1;
+        var x = (1 / (0.8 + P - t0));
+        if (x > 1) {
+          var S = 1;
         } else {
           S = x;
         }
         this.setState({
           S: S,
           step: 6,
-          period:P
-        }); 
+          period: P
+        });
       case 4:
         this.setState({
-          C: c0*K*S*I         
+          C: c0 * K * S * I
         });
-      }
+    }
   };
 
   analize2018 = () => {
-    const { values: {longitude,latitude, soilClass, numberOfStory}} = this.props;
+    const { values: { longitude, latitude, soilClass, numberOfStory } } = this.props;
     const lengthData = data.length;
     const R = 4;
     const D = 2;
@@ -174,195 +174,195 @@ export class Analize extends Component {
     var soilType = soilClass;
     var Fs;
     var F1;
-    var i=0;
-   
+    var i = 0;
+
     var E0 = parseFloat(latitude).toFixed(1);
     var B0 = parseFloat(longitude).toFixed(1);
     var E1 = (E0 - 0.05).toFixed(3);
     var E2 = (E0 - (-0.05)).toFixed(3);
     var B1 = (B0 - 0.05).toFixed(3);
     var B2 = (B0 - (-0.05)).toFixed(3);
-    
+
     while (i < lengthData) {
-      if(B1 == data[i].Longitude ){
-          if(E1 == data[i].Latitude ){
-            var ss1 = data[i].SShort;
-            var s11 = data[i].SOne;         
+      if (B1 == data[i].Longitude) {
+        if (E1 == data[i].Latitude) {
+          var ss1 = data[i].SShort;
+          var s11 = data[i].SOne;
         }
       };
-      if(B1 == data[i].Longitude ){
-        if(E2 == data[i].Latitude ){
+      if (B1 == data[i].Longitude) {
+        if (E2 == data[i].Latitude) {
           var ss2 = data[i].SShort;
-          var s12 = data[i].SOne;   
+          var s12 = data[i].SOne;
         }
       };
-      
-      if(B2 == data[i].Longitude ){
-        if(E1 == data[i].Latitude ){
+
+      if (B2 == data[i].Longitude) {
+        if (E1 == data[i].Latitude) {
           var ss3 = data[i].SShort;
-          var s13 = data[i].SOne;      
-      }
+          var s13 = data[i].SOne;
+        }
       };
-      if(B2 == data[i].Longitude ){
-        if(E2 == data[i].Latitude ){
+      if (B2 == data[i].Longitude) {
+        if (E2 == data[i].Latitude) {
           var ss4 = data[i].SShort;
           var s14 = data[i].SOne;
-           
+
         }
       };
-      i=i+1;
+      i = i + 1;
     }
 
-    var FOne = (latitude-E1)/(E2-E1);
-    var FTwo = (longitude-B1)/(B2-B1);
+    var FOne = (latitude - E1) / (E2 - E1);
+    var FTwo = (longitude - B1) / (B2 - B1);
 
-    var ssCFive = ss1 - (-FOne) * (ss2-ss1)
-    var ssCSix = ss3 - (-FOne) * (ss4-ss3)
-    var s1CFive = s11 - (-FTwo) * (s12-s11)
-    var s1CSix = s13 - (-FTwo) * (s14-s13)
+    var ssCFive = ss1 - (-FOne) * (ss2 - ss1)
+    var ssCSix = ss3 - (-FOne) * (ss4 - ss3)
+    var s1CFive = s11 - (-FTwo) * (s12 - s11)
+    var s1CSix = s13 - (-FTwo) * (s14 - s13)
 
-    var ss = ssCFive - ( -FTwo) * (ssCSix - ssCFive)
-    var s1 = s1CFive - ( -FOne) * (s1CSix - s1CFive)
+    var ss = ssCFive - (-FTwo) * (ssCSix - ssCFive)
+    var s1 = s1CFive - (-FOne) * (s1CSix - s1CFive)
 
-    if (soilType == 'ZA' || soilType == 1){
+    if (soilType == 'ZA' || soilType == 1) {
       Fs = 0.8
-    }else if (soilType == "ZB" || soilType == 2){
-        Fs = 0.9
-    }else if (soilType == "ZC" || soilType == 0 || soilType == 3){
-        if (ss >= 0.25 && ss <=0.5){
-            Fs = 1.3
-          }else if (ss > 0.5 && ss <=0.75){
-            Fs = 1.3+(ss-0.5)*(-0.1)/0.25
-          }else if (ss > 0.75){
-            Fs = 1.2
-          }
-    }else if (soilType == "ZD"){
-      if (ss <= 0.25){
-          Fs = 1.6
-      }else if (ss >0.25 && ss <=0.50){
-          Fs = 1.6 + (ss-0.25) * (-0.2)/0.25
-      }else if (ss > 0.50 && ss <= 0.75){
-        Fs = 1.4 + (ss - 0.50) * (-0.2) / 0.25
-      }else if (ss > 0.75 && ss <= 1.00){
-        Fs = 1.2 + (ss - 0.75) * (-0.1) / 0.25
-      }else if (ss > 1.00 && ss <= 1.25){
-        Fs = 1.1 + (ss - 1.00) * (-0.1) / 0.25
-      }else if (ss > 1.25){
-          Fs = 1.0
+    } else if (soilType == "ZB" || soilType == 2) {
+      Fs = 0.9
+    } else if (soilType == "ZC" || soilType == 0 || soilType == 3) {
+      if (ss >= 0.25 && ss <= 0.5) {
+        Fs = 1.3
+      } else if (ss > 0.5 && ss <= 0.75) {
+        Fs = 1.3 + (ss - 0.5) * (-0.1) / 0.25
+      } else if (ss > 0.75) {
+        Fs = 1.2
       }
-    }else if (soilType == "ZE" || soilType == 4){
-      if (ss <= 0.25){
+    } else if (soilType == "ZD") {
+      if (ss <= 0.25) {
+        Fs = 1.6
+      } else if (ss > 0.25 && ss <= 0.50) {
+        Fs = 1.6 + (ss - 0.25) * (-0.2) / 0.25
+      } else if (ss > 0.50 && ss <= 0.75) {
+        Fs = 1.4 + (ss - 0.50) * (-0.2) / 0.25
+      } else if (ss > 0.75 && ss <= 1.00) {
+        Fs = 1.2 + (ss - 0.75) * (-0.1) / 0.25
+      } else if (ss > 1.00 && ss <= 1.25) {
+        Fs = 1.1 + (ss - 1.00) * (-0.1) / 0.25
+      } else if (ss > 1.25) {
+        Fs = 1.0
+      }
+    } else if (soilType == "ZE" || soilType == 4) {
+      if (ss <= 0.25) {
         Fs = 2.4
-      }else if (ss > 0.25 && ss <= 0.50){
+      } else if (ss > 0.25 && ss <= 0.50) {
         Fs = 2.4 + (ss - 0.25) * (-0.7) / 0.25
-      }else if (ss > 0.50 && ss <= 0.75){
+      } else if (ss > 0.50 && ss <= 0.75) {
         Fs = 1.7 + (ss - 0.50) * (-0.4) / 0.25
-      }else if (ss > 0.75 && ss <= 1.00){
+      } else if (ss > 0.75 && ss <= 1.00) {
         Fs = 1.3 + (ss - 0.75) * (-0.2) / 0.25
-      }else if (ss > 1.00 && ss <= 1.25){
+      } else if (ss > 1.00 && ss <= 1.25) {
         Fs = 1.1 + (ss - 1.00) * (-0.2) / 0.25
-      }else if (ss > 1.25 && ss <=1.5){
+      } else if (ss > 1.25 && ss <= 1.5) {
         Fs = 0.9 + (ss - 1.25) * (-0.1) / 0.25
-      }else if (ss > 1.5){
+      } else if (ss > 1.5) {
         Fs = 0.8
       }
     }
 
-    if (soilType == "ZA" || soilType == 1){
+    if (soilType == "ZA" || soilType == 1) {
       F1 = 0.8
-    }else if (soilType == "ZB" || soilType == 2){  
+    } else if (soilType == "ZB" || soilType == 2) {
       F1 = 0.8
-    }else if (soilType == "ZC" || soilType == 0 || soilType == 3){
-      if (s1 <= 0.50){
-          F1 = 1.5
-      }else if (s1 > 0.5 && s1 <= 0.60){
-          F1 = 1.5 + (s1 - 0.1) * (-0.1) / 0.10
-      }else if (s1 > 0.60){
-          F1 = 1.4
+    } else if (soilType == "ZC" || soilType == 0 || soilType == 3) {
+      if (s1 <= 0.50) {
+        F1 = 1.5
+      } else if (s1 > 0.5 && s1 <= 0.60) {
+        F1 = 1.5 + (s1 - 0.1) * (-0.1) / 0.10
+      } else if (s1 > 0.60) {
+        F1 = 1.4
       }
-    }else if (soilType == "ZD"){
-      if (s1 <= 0.10){
+    } else if (soilType == "ZD") {
+      if (s1 <= 0.10) {
         F1 = 2.4
-      }else if (s1 > 0.10 && s1 <= 0.20){
+      } else if (s1 > 0.10 && s1 <= 0.20) {
         F1 = 2.4 + (s1 - 0.10) * (-0.2) / 0.10
-      }else if (s1 > 0.20 && s1 <= 0.30){
+      } else if (s1 > 0.20 && s1 <= 0.30) {
         F1 = 2.2 + (s1 - 0.20) * (-0.2) / 0.10
-      }else if (s1 > 0.30 && s1 <= 0.40){
+      } else if (s1 > 0.30 && s1 <= 0.40) {
         F1 = 2.0 + (s1 - 0.30) * (-0.1) / 0.10
-      }else if (s1 > 0.40 && s1 <= 0.50){
+      } else if (s1 > 0.40 && s1 <= 0.50) {
         F1 = 1.9 + (s1 - 0.40) * (-0.1) / 0.10
-      }else if (s1 > 0.50 && s1 <= 0.60){
+      } else if (s1 > 0.50 && s1 <= 0.60) {
         F1 = 1.8 + (s1 - 0.50) * (-0.1) / 0.10
-      }else if (s1 > 0.60){
+      } else if (s1 > 0.60) {
         F1 = 1.7
       }
-    }else if (soilType == "ZE" || soilType == 4){
-      if (s1 <= 0.10){
+    } else if (soilType == "ZE" || soilType == 4) {
+      if (s1 <= 0.10) {
         F1 = 4.2
-      }else if (s1 > 0.10 && s1 <= 0.20){
+      } else if (s1 > 0.10 && s1 <= 0.20) {
         F1 = 4.2 + (s1 - 0.10) * (-0.9) / 0.10
-      }else if (s1 > 0.20 && s1 <= 0.30){
+      } else if (s1 > 0.20 && s1 <= 0.30) {
         F1 = 3.3 + (s1 - 0.20) * (-0.5) / 0.10
-      }else if (s1 > 0.30 && s1 <= 0.40){
+      } else if (s1 > 0.30 && s1 <= 0.40) {
         F1 = 2.8 + (s1 - 0.30) * (-0.4) / 0.10
-      }else if (s1 > 0.40 && s1 <= 0.50){
+      } else if (s1 > 0.40 && s1 <= 0.50) {
         F1 = 2.4 + (s1 - 0.40) * (-0.2) / 0.10
-      }else if (s1 > 0.50 && s1 <= 0.60){
+      } else if (s1 > 0.50 && s1 <= 0.60) {
         F1 = 2.2 + (s1 - 0.50) * (-0.2) / 0.10
-      }else if (s1 > 0.60){
+      } else if (s1 > 0.60) {
         F1 = 2.0
       }
     }
 
-    var sDs = ss*Fs
-    var sD1 = s1*F1
-    var tA = (0.2*sD1/sDs)
-    var tB = (sD1/sDs)
+    var sDs = ss * Fs
+    var sD1 = s1 * F1
+    var tA = (0.2 * sD1 / sDs)
+    var tB = (sD1 / sDs)
     var tL = 6.0
-    let height = numberOfStory*2.7
-    var P = 0.07*(Math.pow(height, 0.75))
+    let height = numberOfStory * 2.7
+    var P = 0.07 * (Math.pow(height, 0.75))
     var sAe
 
 
-    if (P >= 0.0 && P < tA){
-      sAe = (0.4+0.6*P/tA)*sDs
-      
-    }else if (P >= tA && P < tB){
+    if (P >= 0.0 && P < tA) {
+      sAe = (0.4 + 0.6 * P / tA) * sDs
+
+    } else if (P >= tA && P < tB) {
       sAe = sDs
-      
-    }else if (P >= tB && P < tL){
-      sAe = sD1/P
-      
-    }else if (P >= tL){
-      sAe = sD1*tL /Math.pow(P, 2) 
+
+    } else if (P >= tB && P < tL) {
+      sAe = sD1 / P
+
+    } else if (P >= tL) {
+      sAe = sD1 * tL / Math.pow(P, 2)
     }
 
-    if (P >= tB){
-        var rA = R/I
-        
-    }else if (P <= tB){
-        rA = D+(R/I-D)*P/tB
+    if (P >= tB) {
+      var rA = R / I
+
+    } else if (P <= tB) {
+      rA = D + (R / I - D) * P / tB
     }
-    
-    var sAr = sAe/rA;
+
+    var sAr = sAe / rA;
 
     this.setState({
-      codesYear : '2018 Deprem Yönetmeliği',
+      codesYear: '2018 Deprem Yönetmeliği',
       period: P,
-      sAr:sAr, 
-      FsCoff:Fs,
-      F1Coff:F1,
-      longitude:ss,
-      latitude:s1,
-      sAe:sAe
+      sAr: sAr,
+      FsCoff: Fs,
+      F1Coff: F1,
+      longitude: ss,
+      latitude: s1,
+      sAe: sAe
     })
-}
-  
+  }
+
 
   render() {
-    const { s11,s12,s13,s14,ss1,ss2,ss3,ss4,aa,bb,cc,dd,sAr, sAe, F1Coff, FsCoff, longitude, latitude, C, S, period, cZero, seismicZone, codesYear } = this.state;
-    const { values: { soilClass, location,  S1, constructionYear,numberOfStory,damageInfo, buildingLayout}} = this.props;
-    const values= {
+    const { s11, s12, s13, s14, ss1, ss2, ss3, ss4, aa, bb, cc, dd, sAr, sAe, F1Coff, FsCoff, longitude, latitude, C, S, period, cZero, seismicZone, codesYear } = this.state;
+    const { values: { soilClass, location, S1, constructionYear, numberOfStory, damageInfo, buildingLayout } } = this.props;
+    const values = {
       labels: ['1975', '2018'],
       datasets: [
         {
@@ -370,26 +370,26 @@ export class Analize extends Component {
           backgroundColor: 'rgba(75,192,19,1)',
           borderColor: 'rgba(0,0,0,1)',
           borderWidth: 2,
-          data: [100*C, 100*sAr]
+          data: [100 * C, 100 * sAr]
         }
       ]
     }
 
     return (
-      <div className="analize"><hr/> 
+      <div className="analize"><hr />
         <div className="skor">
-          Geçerli Yönetmelik: {codesYear}<br/>
-          C Katsayısı: {C.toFixed(3)}<br/>
-          Sar:{sAr.toFixed(3)}<hr/>
-          Yapılaşma Tipi:{buildingLayout}<br/>
-          Hasar Durumu:{damageInfo}<br/>  
-        </div><hr/>
+          Geçerli Yönetmelik: {codesYear}<br />
+          C Katsayısı: {C.toFixed(3)}<br />
+          Sar:{sAr.toFixed(3)}<hr />
+          Yapılaşma Tipi:{buildingLayout}<br />
+          Hasar Durumu:{damageInfo}<br />
+        </div><hr />
 
-        <div style={{marginTop:"36px", width: "800px",height: "400px"}}>
+        <div style={{ marginTop: "36px", width: "800px", height: "400px" }}>
           <BarChart values={values}></BarChart>
         </div>
-       
-        <br/>
+
+        <br />
         <Button
           color="secondary"
           variant="contained"
@@ -402,7 +402,7 @@ export class Analize extends Component {
           onClick={this.codes}
         >Analiz</Button>
 
-      </div>  
+      </div>
     );
   }
 }
