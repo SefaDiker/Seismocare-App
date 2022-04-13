@@ -400,7 +400,7 @@ export class Analize extends Component {
           color="primary"
           variant="contained"
           onClick={this.codes}
-        >Analiz</Button>
+        >Analysis</Button>
 
       </div>
     );
